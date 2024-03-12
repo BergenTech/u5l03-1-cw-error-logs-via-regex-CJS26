@@ -11,9 +11,9 @@ with open(json_file,'r')as file:
         writer = csv.writer(file2)
         writer.writerow(['timestamp', 'level', 'message'])
         for entry in data:
-            pattern = r"\w(ERROR)"
+            pattern = "ERROR"
             print(entry["level"])
-            print(re.findall(entry["level"],pattern,re.IGNORECASE))
-            if re.findall(entry["level"],pattern):
-                entry_data = [entry['timestamp'],entry['level'],entry['message']]
+            print(re.search(pattern,entry["level"]))
+            if re.search(pattern,entry["level"]):
+                entry_data = [entry['timestamp'],"ERROR",entry['message']]
                 writer.writerow(entry_data)
